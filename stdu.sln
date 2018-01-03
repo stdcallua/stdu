@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stdu.backup", "stdu.backup\stdu.backup.csproj", "{9B99E5C8-B7CB-4983-87B0-70F55CE57ED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stdu.autobackup", "stdu.autobackup\stdu.autobackup.csproj", "{576DBEE2-34BA-45F2-949D-1E1915E4430D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B99E5C8-B7CB-4983-87B0-70F55CE57ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B99E5C8-B7CB-4983-87B0-70F55CE57ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B99E5C8-B7CB-4983-87B0-70F55CE57ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B99E5C8-B7CB-4983-87B0-70F55CE57ED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{576DBEE2-34BA-45F2-949D-1E1915E4430D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{576DBEE2-34BA-45F2-949D-1E1915E4430D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{576DBEE2-34BA-45F2-949D-1E1915E4430D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{576DBEE2-34BA-45F2-949D-1E1915E4430D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BE5DB28-158D-45A6-8802-D540CCA53D6E}
+	EndGlobalSection
+EndGlobal

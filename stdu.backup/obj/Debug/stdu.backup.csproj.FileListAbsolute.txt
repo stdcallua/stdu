@@ -1,0 +1,6 @@
+D:\work\stdu\stdu.backup\bin\Debug\stdu.backup.exe
+D:\work\stdu\stdu.backup\bin\Debug\stdu.backup.pdb
+D:\work\stdu\stdu.backup\obj\Debug\stdu.backup.csprojResolveAssemblyReference.cache
+D:\work\stdu\stdu.backup\obj\Debug\stdu.backup.csproj.CoreCompileInputs.cache
+D:\work\stdu\stdu.backup\obj\Debug\stdu.backup.exe
+D:\work\stdu\stdu.backup\obj\Debug\stdu.backup.pdb

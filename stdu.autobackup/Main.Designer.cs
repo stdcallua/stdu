@@ -32,14 +32,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.notifycator = new System.Windows.Forms.NotifyIcon(this.components);
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsStartedImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.SettingsImage = new System.Windows.Forms.DataGridViewImageColumn();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.Storage = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,8 @@
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FileName,
             this.IsStartedImage,
-            this.SettingsImage});
+            this.SettingsImage,
+            this.Storage});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.Location = new System.Drawing.Point(0, 25);
             this.dataGridView.MultiSelect = false;
@@ -69,31 +71,7 @@
             this.dataGridView.Size = new System.Drawing.Size(413, 207);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
-            // 
-            // FileName
-            // 
-            this.FileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.FileName.DataPropertyName = "FileName";
-            this.FileName.HeaderText = "FileName";
-            this.FileName.Name = "FileName";
-            // 
-            // IsStartedImage
-            // 
-            this.IsStartedImage.DataPropertyName = "IsStartedImage";
-            this.IsStartedImage.HeaderText = "StartStop";
-            this.IsStartedImage.MinimumWidth = 32;
-            this.IsStartedImage.Name = "IsStartedImage";
-            this.IsStartedImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsStartedImage.Width = 32;
-            // 
-            // SettingsImage
-            // 
-            this.SettingsImage.DataPropertyName = "SettingsImage";
-            this.SettingsImage.HeaderText = "Settings";
-            this.SettingsImage.MinimumWidth = 32;
-            this.SettingsImage.Name = "SettingsImage";
-            this.SettingsImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SettingsImage.Width = 32;
+            this.dataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentDoubleClick);
             // 
             // toolStrip1
             // 
@@ -107,6 +85,10 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog";
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -116,10 +98,6 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "Добавить";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog";
             // 
             // toolStripButton2
             // 
@@ -141,6 +119,39 @@
             this.toolStripButton3.Text = "Остановить все";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // FileName
+            // 
+            this.FileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FileName.DataPropertyName = "FileName";
+            this.FileName.HeaderText = "FileName";
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            // 
+            // IsStartedImage
+            // 
+            this.IsStartedImage.DataPropertyName = "IsStartedImage";
+            this.IsStartedImage.HeaderText = "StartStop";
+            this.IsStartedImage.MinimumWidth = 32;
+            this.IsStartedImage.Name = "IsStartedImage";
+            this.IsStartedImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsStartedImage.Width = 32;
+            // 
+            // SettingsImage
+            // 
+            this.SettingsImage.DataPropertyName = "SettingsImage";
+            this.SettingsImage.HeaderText = "Settings";
+            this.SettingsImage.MinimumWidth = 32;
+            this.SettingsImage.Name = "SettingsImage";
+            this.SettingsImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SettingsImage.Width = 32;
+            // 
+            // Storage
+            // 
+            this.Storage.HeaderText = "Storage";
+            this.Storage.MinimumWidth = 32;
+            this.Storage.Name = "Storage";
+            this.Storage.Width = 32;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -150,6 +161,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Автобекап";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.toolStrip1.ResumeLayout(false);
@@ -166,11 +178,12 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.DataGridViewImageColumn IsStartedImage;
         private System.Windows.Forms.DataGridViewImageColumn SettingsImage;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.DataGridViewButtonColumn Storage;
     }
 }
 

@@ -9,3 +9,5 @@ D:\work\stdu\stdu.autobackup\obj\Release\stdu.autobackup.exe
 D:\work\stdu\stdu.autobackup\obj\Release\stdu.autobackup.pdb
 D:\work\stdu\Release\stdu.autobackup.exe
 D:\work\stdu\Release\stdu.autobackup.pdb
+D:\work\stdu\stdu.autobackup\obj\Release\stdu.autobackup.csprojResolveAssemblyReference.cache
+D:\work\stdu\stdu.autobackup\obj\Release\stdu.autobackup.BackupStorage.resources

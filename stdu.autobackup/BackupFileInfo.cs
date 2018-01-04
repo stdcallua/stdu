@@ -136,6 +136,23 @@ namespace stdu.autobackup
             else Start(notivicator);
         }
 
+        private String GetDestDirectory()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            String DestDirectory = fileInfo.DirectoryName;
+            if (RepoGlobalFolder)
+            {
+                DestDirectory = Path.Combine(Application.StartupPath, "storage", fileInfo.Name);
+                Directory.CreateDirectory(DestDirectory);
+            }
+            else
+            if (RepoUserFolder)
+            {
+                DestDirectory = UserFolder;
+            }
+            return DestDirectory;
+        }
+
         private void Backup(string value)
         {
             if (File.Exists(value))
@@ -156,14 +173,13 @@ namespace stdu.autobackup
 
                 String newFileName = String.Empty;
                 String sufix = String.Empty;
-
-                var listFilesBackup = Directory.EnumerateFiles(DestDirectory, Path.GetFileNameWithoutExtension(value) + "_storage_*" + fileInfo.Extension, SearchOption.TopDirectoryOnly);
+                var listFilesBackup = GetBackupFiles();//Directory.EnumerateFiles(DestDirectory, Path.GetFileNameWithoutExtension(value) + "_storage_*" + fileInfo.Extension, SearchOption.TopDirectoryOnly);
                 if (listFilesBackup.Count() > MaxCount)
                 {
-                    var orderedlist = listFilesBackup.OrderByDescending(f => File.GetCreationTime(f).ToFileTime()).ToList();
-                    for (int i = MaxCount; i < orderedlist.Count(); i++)
+                    //var orderedlist = listFilesBackup.OrderByDescending(f => File.GetCreationTime(f).ToFileTime()).ToList();
+                    for (int i = MaxCount; i < listFilesBackup.Count(); i++)
                     {
-                        File.Delete(orderedlist[i]);
+                        File.Delete(listFilesBackup[i]);
                     }
                 }
 
@@ -179,6 +195,21 @@ namespace stdu.autobackup
                 
                 File.Copy(value, newFileName);
             }
+
+            
+        }
+
+        public void ShowStorage()
+        {
+            BackupStorage.ShowBackupStorage(this);
+        }
+
+        public List<String> GetBackupFiles()
+        {
+            FileInfo fileInfo = new FileInfo(FileName);
+            var result= Directory.EnumerateFiles(GetDestDirectory(), Path.GetFileNameWithoutExtension(FileName) + "_storage_*" + fileInfo.Extension, SearchOption.TopDirectoryOnly).ToList();
+            result = result.OrderByDescending(f => File.GetCreationTime(f).ToFileTime()).ToList();
+            return result;
         }
     }
 }

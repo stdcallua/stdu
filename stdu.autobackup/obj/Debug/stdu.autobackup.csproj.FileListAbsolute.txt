@@ -7,4 +7,4 @@ D:\work\stdu\stdu.autobackup\obj\Debug\stdu.autobackup.csproj.CoreCompileInputs.
 D:\work\stdu\stdu.autobackup\obj\Debug\stdu.autobackup.exe
 D:\work\stdu\stdu.autobackup\obj\Debug\stdu.autobackup.pdb
 D:\work\stdu\stdu.autobackup\obj\Debug\stdu.autobackup.SettingsDialog.resources
-D:\work\stdu\stdu.autobackup\obj\Debug\stdu.autobackup.csprojResolveAssemblyReference.cache
+D:\work\stdu\stdu.autobackup\obj\Debug\stdu.autobackup.BackupStorage.resources

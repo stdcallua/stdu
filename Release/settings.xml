@@ -8,6 +8,6 @@
     <RepoGlobalFolder>false</RepoGlobalFolder>
     <RepoUserFolder>false</RepoUserFolder>
     <UserFolder />
-    <MaxCount>5</MaxCount>
+    <MaxCount>30</MaxCount>
   </BackupFileInfo>
 </ArrayOfBackupFileInfo>

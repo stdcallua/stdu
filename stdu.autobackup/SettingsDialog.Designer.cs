@@ -93,7 +93,7 @@
             this.byAuto.Size = new System.Drawing.Size(218, 17);
             this.byAuto.TabIndex = 4;
             this.byAuto.TabStop = true;
-            this.byAuto.Text = "Автоматически при изминении файла";
+            this.byAuto.Text = "Автоматически при изменении файла";
             this.byAuto.UseVisualStyleBackColor = true;
             // 
             // gr
@@ -161,9 +161,9 @@
             this.RepoGlobalFolder.AutoSize = true;
             this.RepoGlobalFolder.Location = new System.Drawing.Point(14, 45);
             this.RepoGlobalFolder.Name = "RepoGlobalFolder";
-            this.RepoGlobalFolder.Size = new System.Drawing.Size(188, 17);
+            this.RepoGlobalFolder.Size = new System.Drawing.Size(191, 17);
             this.RepoGlobalFolder.TabIndex = 1;
-            this.RepoGlobalFolder.Text = "Глобальное рядом с бекапером";
+            this.RepoGlobalFolder.Text = "Глобальное, рядом с бекапером";
             this.RepoGlobalFolder.UseVisualStyleBackColor = true;
             // 
             // RepoNearSourceFolder
@@ -182,13 +182,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(245, 295);
+            this.ClientSize = new System.Drawing.Size(249, 301);
             this.Controls.Add(this.gr);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SettingsDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SettingsDialog";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

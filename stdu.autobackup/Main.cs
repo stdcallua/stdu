@@ -57,15 +57,17 @@ namespace stdu.autobackup
 
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (dataGridView.Columns[e.ColumnIndex].HeaderText == "StartStop")
             {
                 Files[e.RowIndex].StartStop(notifycator);
             }
-            if (e.ColumnIndex == 2)
+            if (dataGridView.Columns[e.ColumnIndex].HeaderText == "Settings")
             {
                 Files[e.RowIndex].ShowSettings();
                 SaveSettings();
             }
+            if (dataGridView.Columns[e.ColumnIndex].HeaderText == "Storage")
+                Files[e.RowIndex].ShowStorage();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -78,6 +80,11 @@ namespace stdu.autobackup
         {
             Files.ForEach(f => f.Stop());
             _tableSource.ResetBindings(false);
+        }
+
+        private void dataGridView_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
     }
 }

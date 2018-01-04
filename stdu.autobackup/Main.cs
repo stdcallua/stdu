@@ -25,6 +25,7 @@ namespace stdu.autobackup
             {
                 Files = Xml.Load(SettingsPath, typeof(List<BackupFileInfo>)) as List<BackupFileInfo>;
                 if (Files == null) Files = new List<BackupFileInfo>();
+                Files.ForEach(f => f.Notivicator = notifycator);
             }
             _tableSource = new BindingSource();
             _tableSource.DataSource = Files;
@@ -50,6 +51,7 @@ namespace stdu.autobackup
             if (openFileDialog1.ShowDialog() != DialogResult.OK) return;
             var ff = new BackupFileInfo() { FileName = openFileDialog1.FileName };
             ff.ShowSettings();
+            ff.Notivicator = notifycator;
             Files.Add(ff);
             _tableSource.ResetBindings(false);
             SaveSettings();

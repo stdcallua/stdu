@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace stdu.autobackup
 {
     public class BackupFileInfo
     {
         private System.IO.FileSystemWatcher Watcher;
+
         private System.Windows.Forms.Timer Timer; 
 
         public String FileName { get; set; }
@@ -33,6 +35,7 @@ namespace stdu.autobackup
         [Browsable(false)]
         public int MaxCount { get; set; } = 30;
 
+        [XmlIgnore]
         public Image IsStartedImage
         {
             get {
@@ -42,6 +45,7 @@ namespace stdu.autobackup
             }
         }
 
+        [XmlIgnore]
         public Image SettingsImage
         {
             get
@@ -57,7 +61,7 @@ namespace stdu.autobackup
 
         public void Start(NotifyIcon notivicator)
         {
-            _notivicator = notivicator;
+            this.Notivicator = notivicator;
             if (IsStarted()) return;
             if (UseWatch)
             {
@@ -88,12 +92,22 @@ namespace stdu.autobackup
             ShowNotifi();
         }
 
-        DateTime lastRead = DateTime.MinValue;
+        private DateTime lastRead = DateTime.MinValue;
 
-        private void ShowNotifi()
+        public void ShowNotifi()
         {
-            _notivicator.BalloonTipText = FileName;
-            _notivicator.ShowBalloonTip(3);
+            if (Notivicator == null) return;
+            Notivicator.BalloonTipTitle = "Создана резервная копия файла";
+            Notivicator.BalloonTipText = FileName;
+            Notivicator.ShowBalloonTip(3);
+        }
+
+        public void ShowNotifiRecovery()
+        {
+            if (Notivicator == null) return;
+            Notivicator.BalloonTipTitle = "Восстановлена резервная копия файла";
+            Notivicator.BalloonTipText = FileName;
+            Notivicator.ShowBalloonTip(3);
         }
 
         private void Watcher_Changed(object sender, FileSystemEventArgs e)
@@ -128,7 +142,8 @@ namespace stdu.autobackup
             SettingsDialog.ShowSettingsDialog(this);
         }
 
-        private NotifyIcon _notivicator;
+        [XmlIgnore]
+        public NotifyIcon Notivicator;
 
         public void StartStop(NotifyIcon notivicator)
         {
@@ -195,8 +210,6 @@ namespace stdu.autobackup
                 
                 File.Copy(value, newFileName);
             }
-
-            
         }
 
         public void ShowStorage()

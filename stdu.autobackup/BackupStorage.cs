@@ -15,7 +15,6 @@ namespace stdu.autobackup
         private List<BackupStorageFileInfo> list = new List<BackupStorageFileInfo>();
         private BindingSource _tableSource;
         private BackupFileInfo _info;
-
         
         public void SetInfo(BackupFileInfo info)
         {
@@ -44,7 +43,10 @@ namespace stdu.autobackup
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+
             if (dataGridView.SelectedRows.Count == 0) return;
+            var isStarted = _info.IsStarted();
+            _info.Stop();
             var recoveryFileName = list[dataGridView.SelectedRows[0].Index].GetFulName();
             try
             {
@@ -54,8 +56,11 @@ namespace stdu.autobackup
             catch ( Exception exption)
             {
                 MessageBox.Show(exption.ToString());
+                if (isStarted) _info.Start(_info.Notivicator);
                 return;
             }
+            _info.ShowNotifiRecovery();
+            if (isStarted) _info.Start(_info.Notivicator);
             DialogResult = DialogResult.OK;
         }
     }

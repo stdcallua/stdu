@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml.Serialization;
 using System.IO;
+using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,9 @@ namespace stdu.autobackup
                     XmlSerializer XmlSerializer = new XmlSerializer(Type);
                     XmlSerializer.Serialize(FileStream, Value);
                 }
-                catch
+                catch (Exception e)
                 {
+                    MessageBox.Show(e.Message);
                 }
                 FileStream.Close();
                 FileStream.Dispose();

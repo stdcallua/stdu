@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ArrayOfBackupFileInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BackupFileInfo>
+    <FileName>D:\_test\0\2.txt</FileName>
+    <Interval>5000</Interval>
+    <UseWatch>true</UseWatch>
+    <RepoNearSourceFolder>false</RepoNearSourceFolder>
+    <RepoGlobalFolder>true</RepoGlobalFolder>
+    <RepoUserFolder>false</RepoUserFolder>
+    <UserFolder />
+    <MaxCount>5</MaxCount>
+  </BackupFileInfo>
+</ArrayOfBackupFileInfo>

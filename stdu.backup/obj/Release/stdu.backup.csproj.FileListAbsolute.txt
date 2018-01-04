@@ -1,0 +1,7 @@
+D:\work\stdu\stdu.backup\bin\Release\stdu.backup.exe
+D:\work\stdu\stdu.backup\bin\Release\stdu.backup.pdb
+D:\work\stdu\stdu.backup\obj\Release\stdu.backup.csproj.CoreCompileInputs.cache
+D:\work\stdu\stdu.backup\obj\Release\stdu.backup.exe
+D:\work\stdu\stdu.backup\obj\Release\stdu.backup.pdb
+D:\work\stdu\Release\stdu.backup.exe
+D:\work\stdu\Release\stdu.backup.pdb

@@ -25,9 +25,9 @@ namespace stdu.autobackup
         [Browsable(false)]
         public Boolean RepoNearSourceFolder { get; set; } = true;
         [Browsable(false)]
-        public Boolean RepoGlobalFolder { get; set; }
+        public Boolean RepoGlobalFolder { get; set; } = false;
         [Browsable(false)]
-        public Boolean RepoUserFolder { get; set; }
+        public Boolean RepoUserFolder { get; set; } = false;
         [Browsable(false)]
         public String UserFolder { get; set; }
         [Browsable(false)]
@@ -41,7 +41,7 @@ namespace stdu.autobackup
                     return Properties.Resources.media_play;
             }
         }
-        //[Browsable(false)]
+
         public Image SettingsImage
         {
             get
@@ -49,8 +49,6 @@ namespace stdu.autobackup
                 return Properties.Resources.about;
             }
         }
-
-        private Boolean test;
 
         public Boolean IsStarted()
         {
@@ -66,7 +64,6 @@ namespace stdu.autobackup
 
                 Watcher = new System.IO.FileSystemWatcher(Path.GetDirectoryName(FileName), Path.GetFileName(FileName));
                 Watcher.IncludeSubdirectories = false;
-                //Watcher.NotifyFilter = NotifyFilters.FileName;
                 Watcher.Changed += Watcher_Changed;
                 Watcher.EnableRaisingEvents = true;
 
@@ -75,10 +72,10 @@ namespace stdu.autobackup
             {
                 if (Interval < 999)
                 {
-                    System.Windows.Forms.MessageBox.Show("Слишком маленький интервал");
+                    MessageBox.Show("Слишком маленький интервал");
                     return;
                 }
-                Timer = new System.Windows.Forms.Timer();
+                Timer = new Timer();
                 Timer.Interval = Interval;
                 Timer.Tick += Timer_Tick;
                 Timer.Start();
@@ -143,39 +140,44 @@ namespace stdu.autobackup
         {
             if (File.Exists(value))
             {
+                
                 FileInfo fileInfo = new FileInfo(value);
+                String DestDirectory = fileInfo.DirectoryName;
+                if (RepoGlobalFolder)
+                {
+                    DestDirectory = Path.Combine(Application.StartupPath, "storage", fileInfo.Name);
+                    Directory.CreateDirectory(DestDirectory);
+                }
+                else
+                if (RepoUserFolder)
+                {
+                    DestDirectory = UserFolder;
+                }
+
                 String newFileName = String.Empty;
                 String sufix = String.Empty;
+
+                var listFilesBackup = Directory.EnumerateFiles(DestDirectory, Path.GetFileNameWithoutExtension(value) + "_storage_*" + fileInfo.Extension, SearchOption.TopDirectoryOnly);
+                if (listFilesBackup.Count() > MaxCount)
+                {
+                    var orderedlist = listFilesBackup.OrderByDescending(f => File.GetCreationTime(f).ToFileTime()).ToList();
+                    for (int i = MaxCount; i < orderedlist.Count(); i++)
+                    {
+                        File.Delete(orderedlist[i]);
+                    }
+                }
+
                 int index = 0;
                 while (true)
                 {
-
-                    String newName = Path.GetFileNameWithoutExtension(value) + "_" + DateTime.Today.ToShortDateString() + sufix + fileInfo.Extension;
-                    newFileName = Path.Combine(fileInfo.DirectoryName, newName);
+                    String newName = Path.GetFileNameWithoutExtension(value) + "_storage_" + DateTime.Now.ToString("dd-M-yyyy--HH-mm-ss") + sufix + fileInfo.Extension;
+                    newFileName = Path.Combine(DestDirectory, newName);
                     if (!File.Exists(newFileName)) break;
-                    sufix = "(" + index.ToString() + ")";
+                    sufix = "_(" + index.ToString() + ")";
                     index++;
                 }
+                
                 File.Copy(value, newFileName);
-            }
-            else
-            {
-                DirectoryInfo dirInfo = new DirectoryInfo(value);
-                if (dirInfo.Exists)
-                {
-                    String newDirName = String.Empty;
-                    String sufix = String.Empty;
-                    int index = 0;
-                    while (true)
-                    {
-                        String newName = dirInfo.Name + "_" + DateTime.Today.ToShortDateString() + sufix;
-                        newDirName = Path.Combine(dirInfo.Parent.FullName, newName);
-                        if (!Directory.Exists(newDirName)) break;
-                        sufix = "(" + index.ToString() + ")";
-                        index++;
-                    }
-                    Directory.Move(value, newDirName);
-                }
             }
         }
     }
